@@ -12,7 +12,7 @@ namespace AlgorithmLearning
         /// <summary>
         /// 插入排序 
         /// 原地排序,稳定排序
-        /// 时间复制度log(n²)
+        /// 时间复制度O(n²)
         /// </summary>
         public static void InsertSort(int[] array)
         {
@@ -42,7 +42,7 @@ namespace AlgorithmLearning
         /// <summary>
         /// 冒泡排序
         /// 原地排序，稳定排序
-        /// 时间复杂度log(n²)
+        /// 时间复杂度O(n²)
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
@@ -68,7 +68,7 @@ namespace AlgorithmLearning
         /// <summary>
         /// 归并排序
         /// 非原地排序,稳定排序
-        /// 时间复制度(nlogn)
+        /// 时间复制度O(nlogn)
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
@@ -77,15 +77,6 @@ namespace AlgorithmLearning
             Sort(array, 0, array.Length - 1);
         }
 
-        /// <summary>
-        /// 快速排序
-        /// 原地排序
-        /// </summary>
-        /// <param name="array"></param>
-        public static void QuickSort(int[] array)
-        {
-
-        }
 
         /// <summary>
         /// 分治
@@ -139,10 +130,58 @@ namespace AlgorithmLearning
             }
             for (i = 0; i <= r - p; i++)
             {
-                array[p+i] = temp[i];
+                array[p + i] = temp[i];
             }
         }
 
+        /// <summary>
+        /// 快速排序
+        /// 原地排序
+        /// 非稳定排序
+        /// 平均时间复杂度O(nlogn),最坏平均时间复杂度O(n²)
+        /// </summary>
+        /// <param name="array"></param>
+        public static void QuickSort(int[] array)
+        {
+            QuickSortInternally(array,0,array.Length-1);
+        }
+
+        static void QuickSortInternally(int[] a,int p, int r)
+        {
+            if (p>=r)
+            {
+                return;
+            }
+            int q = Partition(a,p,r);
+            QuickSortInternally(a,p,q-1);
+            QuickSortInternally(a,q+1,r);
+        }        
+
+        static int Partition(int[] a,int p,int r)
+        {
+            int pivot = a[r];
+            int i = p;
+            for (int j=p;j<r;j++)
+            {
+                if (a[j]<pivot)
+                {
+                    if (i==j)
+                    {
+                        i++;
+                    }
+                    else
+                    {
+                        int tmps = a[i];
+                        a[i++] = a[j];
+                        a[j] = tmps;
+                    }
+                }
+            }
+            int tmp = a[i];
+            a[i] = a[r];
+            a[r] = tmp;
+            return i;
+        }
 
     }
 }

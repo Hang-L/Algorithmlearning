@@ -9,11 +9,12 @@ namespace AlgorithmLearning
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            int[] array = /*CreateArray(100); */new int[] { 3,4,1,5,6,7,9,0,2,8};
+            int[] array = /*CreateArray(100); */new int[] { 3,4,1,5,6,7,9,10,11,2,8};
             ToString(array);
             //InsertSortClass.InsertSort(array);
             //array = SortClass.BubbleSort(array);
-            SortClass.MergeSort(array);
+            //SortClass.MergeSort(array);
+            SortClass.QuickSort(array);
             ToString(array);
             Console.ReadLine();
         }
