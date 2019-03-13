@@ -65,6 +65,26 @@ namespace AlgorithmLearning
             return array;
         }
 
+        public static void SelectSort(int[] array)
+        {
+            int minIndex = -1;
+            int tmp = -1;
+            for (var i=0;i<array.Length-1;i++)
+            {
+                minIndex = i;
+                for (var j=i+1;j<array.Length;j++)
+                {
+                    if (array[minIndex]>array[j])
+                    {
+                        minIndex = j;
+                    }
+                }
+                tmp = array[i];
+                array[i] = array[minIndex];
+                array[minIndex] = tmp;
+            }
+        }
+
         /// <summary>
         /// 归并排序
         /// 非原地排序,稳定排序
@@ -146,6 +166,12 @@ namespace AlgorithmLearning
             QuickSortInternally(array,0,array.Length-1);
         }
 
+        /// <summary>
+        /// 快排内部实现
+        /// </summary>
+        /// <param name="a">原始数据</param>
+        /// <param name="p">起点</param>
+        /// <param name="r">终点</param>
         static void QuickSortInternally(int[] a,int p, int r)
         {
             if (p>=r)
@@ -157,6 +183,13 @@ namespace AlgorithmLearning
             QuickSortInternally(a,q+1,r);
         }        
 
+        /// <summary>
+        /// 分区点
+        /// </summary>
+        /// <param name="a">数组数据</param>
+        /// <param name="p">起点</param>
+        /// <param name="r">终点</param>
+        /// <returns></returns>
         static int Partition(int[] a,int p,int r)
         {
             int pivot = a[r];
